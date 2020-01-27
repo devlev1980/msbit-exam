@@ -1,12 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {IProduct, IProductList} from '../../models/product';
+import {IProductList} from '../../models/product';
 import {PassProductService} from '../../services/pass-product.service';
-import {SharingService} from '../../services/sharing.service';
 import {F} from '../../models/fedex';
 import {U} from '../../models/ups';
 import {MatDialog} from '@angular/material';
-import {AddProductComponent} from '../../dialogs/add-product/add-product.component';
 import {SaveComponent} from '../../dialogs/save/save.component';
 
 @Component({
@@ -22,11 +20,9 @@ export class ProductDetailComponent implements OnInit {
   price: number = null;
   thumbnail: string = '';
   productForm: FormGroup;
-  isSelected: boolean = false;
 
   constructor(private fb: FormBuilder,
               private passProductService: PassProductService,
-              private shareService: SharingService,
               public dialog: MatDialog) {
   }
 

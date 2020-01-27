@@ -26,8 +26,21 @@ button.mat-raised-button:disabled{
   border:1px solid #fff  !important;
   color: #fff !important;
 }
-button.mat-raised-button.delete-btn,button.mat-raised-button.yesBtn{
+button.mat-raised-button.yesBtn{
   background: #EF233C !important;
+}
+button.mat-raised-button.delete-btn{
+  background: transparent !important;
+  box-shadow: none;
+  width: 0;
+  border: 0;
+  .mat-icon{
+    color: #0B3948 !important;
+    width: 0;
+    background: transparent;
+    box-shadow: none;
+    border:0
+  }
 }
 .mat-form-field{
   color: #fff;

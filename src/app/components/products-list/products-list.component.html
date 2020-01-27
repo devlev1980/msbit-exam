@@ -34,16 +34,9 @@
               <div *ngFor="let img of product?.ups" style="height: auto;display: inherit">
                 <img [src]="img?.thumbnailUrl" alt="" *ngIf="img.thumbnailUrl">
               </div>
-              <!--              <span>{{product|json}}</span>-->
-              <!--              <span>{{product.ups|json}}</span>-->
-              <!--              <span>{{product.ups|json}}</span>-->
-              <!--              <img [src]="product?.thumbnailUrl"  alt="">-->
-              <!--              <img [src]="product.company?.thumbnailUrl" alt="">-->
-
             </div>
+
             <div class="product-info-wrapper">
-              <!--              <span class="product-name">{{product?.name}}</span>-->
-              <!--              <span>{{product?.description}}</span>-->
               <span class="product-name" *ngIf="product.fedex?.name">{{product.fedex?.name}}</span>
               <span *ngIf="product.fedex?.description">{{product.fedex?.description}}</span>
               <span class="product-name" *ngIf="product?.name">{{product?.name}}</span>
@@ -56,20 +49,19 @@
                     <span>{{ups.description}}</span></div>
 
                   <div class="actions" *ngIf="product.type === 2">
-                    <button mat-raised-button class="delete-btn" (click)="onDeleteProduct(j)">Delete</button>
+                    <button mat-raised-button class="delete-btn" (click)="onDeleteProduct(j)">
+                      <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                    </button>
                   </div>
                 </li>
               </ul>
-              <!--              <div *ngFor="let ups of product.ups" style="display: flex;flex-direction: column;justify-content: space-around">-->
-              <!--                <span class="product-name">{{ups.name}}</span>-->
-              <!--                <span>{{ups.description}}</span>-->
-              <!--              </div>-->
-
             </div>
 
           </div>
           <div class="actions" *ngIf="product.type === 3 || product.type === 1">
-            <button mat-raised-button class="delete-btn" (click)="onDeleteProduct(i)">Delete</button>
+            <button mat-raised-button class="delete-btn" (click)="onDeleteProduct(i)">
+              <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+            </button>
           </div>
 
         </li>
@@ -86,9 +78,4 @@
 
 </div>
 
-<!--  <mat-list>-->
-<!--    <mat-list-item> Pepper </mat-list-item>-->
-<!--    <mat-list-item> Salt </mat-list-item>-->
-<!--    <mat-list-item> Paprika </mat-list-item>-->
-<!--  </mat-list>-->
 
