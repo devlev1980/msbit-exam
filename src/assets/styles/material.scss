@@ -1,0 +1,39 @@
+@import "../../assets/styles/colors";
+
+.mat-form-field-label.mat-form-field-empty{
+  color: #ffffff ;
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  height: 1px;
+  background: $whiteColor;
+}
+
+.mat-select-value-text{
+  color: #fff;
+}
+button.mat-raised-button {
+  background: $listBackground !important;;
+  color: #fff;
+  min-width: 85px;
+
+  &.cancel-btn{
+    background: #fff !important;
+    color: $listBackground !important;
+  }
+
+}
+button.mat-raised-button:disabled{
+  border:1px solid #fff  !important;
+  color: #fff !important;
+}
+button.mat-raised-button.delete-btn,button.mat-raised-button.yesBtn{
+  background: #EF233C !important;
+}
+.mat-form-field{
+  color: #fff;
+}
+.mat-dialog-container{
+  background: #40798C;
+  padding: 15px 10px;
+  color: #fff;
+}

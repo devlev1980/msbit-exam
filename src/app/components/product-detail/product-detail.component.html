@@ -1,0 +1,27 @@
+<div class="container">
+  <header>
+
+  </header>
+
+  <form [formGroup]="productForm" >
+    <div class="product-details">
+      <h3>Product Details</h3>
+      <img [src]="thumbnail"  alt="" class="product-img">
+      <mat-form-field>
+        <input type="text" matInput formControlName="name"  [(ngModel)]="name" [value]="name">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput  formControlName="description" [(ngModel)]="description" [value]="description"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="number" matInput formControlName="price" [(ngModel)]="price" [value]="price">
+      </mat-form-field>
+      <div class="actions">
+        <button mat-raised-button (click)="onSaveProduct(productForm.value)" [disabled]="productForm?.invalid||productForm.get('name').value === '' ">Save</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+

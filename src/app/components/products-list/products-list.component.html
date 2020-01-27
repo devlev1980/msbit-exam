@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="col-left">
+    <div class="header-wrapper">
+      <div class="actions">
+        <button mat-raised-button (click)="onAddProduct()">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+          Add
+        </button>
+      </div>
+      <div class="search-wrapper">
+        <mat-form-field>
+          <input type="text" matInput placeholder="search products" [(ngModel)]="searchText">
+        </mat-form-field>
+      </div>
+
+      <div class="sort-by-wrapper"><span>Sort by</span>
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let option of options" [value]="option.value" (onSelectionChange)="onSortBy(option)">
+              {{option.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="list-wrapper">
+      <ul *ngIf="products.length> 0;else noData">
+        <li class="products-list" *ngFor="let product of products  | search: searchText ;let i=index"
+            [ngClass]="{'selected': index === i}" (click)="onSelectProduct(product)">
+          <div class="product-list-details">
+            <div class="product-thumbnail">
+              <img [src]="product.fedex?.thumbnailUrl" alt="" *ngIf="product.fedex?.thumbnailUrl">
+              <img [src]="product?.thumbnailUrl" alt="" *ngIf="product.thumbnailUrl">
+              <div *ngFor="let img of product?.ups" style="height: auto;display: inherit">
+                <img [src]="img?.thumbnailUrl" alt="" *ngIf="img.thumbnailUrl">
+              </div>
+              <!--              <span>{{product|json}}</span>-->
+              <!--              <span>{{product.ups|json}}</span>-->
+              <!--              <span>{{product.ups|json}}</span>-->
+              <!--              <img [src]="product?.thumbnailUrl"  alt="">-->
+              <!--              <img [src]="product.company?.thumbnailUrl" alt="">-->
+
+            </div>
+            <div class="product-info-wrapper">
+              <!--              <span class="product-name">{{product?.name}}</span>-->
+              <!--              <span>{{product?.description}}</span>-->
+              <span class="product-name" *ngIf="product.fedex?.name">{{product.fedex?.name}}</span>
+              <span *ngIf="product.fedex?.description">{{product.fedex?.description}}</span>
+              <span class="product-name" *ngIf="product?.name">{{product?.name}}</span>
+              <span *ngIf="product?.name">{{product?.description}}</span>
+
+              <ul>
+                <li *ngFor="let ups of product.ups;let j=index" class="ups-product" (click)="onSelectUps(ups)">
+                  <div class="product-info-wrapper">
+                    <span class="product-name">{{ups.name}}</span>
+                    <span>{{ups.description}}</span></div>
+
+                  <div class="actions" *ngIf="product.type === 2">
+                    <button mat-raised-button class="delete-btn" (click)="onDeleteProduct(j)">Delete</button>
+                  </div>
+                </li>
+              </ul>
+              <!--              <div *ngFor="let ups of product.ups" style="display: flex;flex-direction: column;justify-content: space-around">-->
+              <!--                <span class="product-name">{{ups.name}}</span>-->
+              <!--                <span>{{ups.description}}</span>-->
+              <!--              </div>-->
+
+            </div>
+
+          </div>
+          <div class="actions" *ngIf="product.type === 3 || product.type === 1">
+            <button mat-raised-button class="delete-btn" (click)="onDeleteProduct(i)">Delete</button>
+          </div>
+
+        </li>
+
+      </ul>
+      <ng-template #noData>
+        <h3 class="no-data">No data to display</h3>
+      </ng-template>
+    </div>
+  </div>
+  <div class="col-right">
+    <app-product-detail></app-product-detail>
+  </div>
+
+</div>
+
+<!--  <mat-list>-->
+<!--    <mat-list-item> Pepper </mat-list-item>-->
+<!--    <mat-list-item> Salt </mat-list-item>-->
+<!--    <mat-list-item> Paprika </mat-list-item>-->
+<!--  </mat-list>-->
+
