@@ -1,7 +1,7 @@
 @import "../../assets/styles/colors";
 
 .mat-form-field-label.mat-form-field-empty{
-  color: #ffffff ;
+  color: $whiteColor ;
 }
 .mat-form-field-appearance-legacy .mat-form-field-underline {
   height: 1px;
@@ -9,15 +9,15 @@
 }
 
 .mat-select-value-text{
-  color: #fff;
+  color: $whiteColor;
 }
 button.mat-raised-button {
   background: $listBackground !important;;
-  color: #fff;
+  color: $whiteColor;
   min-width: 85px;
 
   &.cancel-btn{
-    background: #fff !important;
+    background: $whiteColor !important;
     color: $listBackground !important;
   }
 
@@ -34,6 +34,10 @@ button.mat-raised-button.delete-btn{
   box-shadow: none;
   width: 0;
   border: 0;
+
+  &.cdk-program-focused .mat-button-focus-overlay {
+    opacity: 0 !important;
+  }
   .mat-icon{
     color: #0B3948 !important;
     width: 0;
@@ -42,6 +46,8 @@ button.mat-raised-button.delete-btn{
     border:0
   }
 }
+
+
 .mat-form-field{
   color: #fff;
 }
