@@ -11,8 +11,11 @@
   padding: 0.5rem 1rem;
 
   .col-left {
-    height: 735px;
-    overflow-y: auto;
+    //height: 735px;
+    //overflow-y: auto;
+    position: relative;
+    max-width: 700px;
+    width: 100%;
 
     .header-wrapper {
       position: sticky;
@@ -58,12 +61,16 @@
       }
     }
 .list-wrapper{
+  height: 500px;
   h3.no-data{
     color: white;
     font-size: 50px;
     text-align: center;
   }
   ul {
+
+    max-height: 500px;
+    overflow-y: auto;
     li.products-list {
       display: flex;
       align-items: center;
@@ -100,8 +107,10 @@
       .product-info-wrapper {
         display: flex;
         flex-direction: column;
-        flex: 1;
+        flex-wrap: wrap;
+       flex: 1;
         height: 100%;
+        justify-content: center;
 
         span {
           color: $listBackground;
@@ -160,8 +169,19 @@
 }
 
   }
+  .pagination{
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+   text-align: center;
+
+  }
+
 
   .col-right {
     flex: 1;
   }
+}
+::ng-deep.ngx-pagination .current {
+  background: $listBackground !important;
 }

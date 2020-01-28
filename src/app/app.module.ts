@@ -15,6 +15,8 @@ import {SearchPipe} from './pipes/search.pipe';
 import {YesNoComponent} from './dialogs/yes-no/yes-no.component';
 import {AddProductComponent} from './dialogs/add-product/add-product.component';
 import {SaveComponent} from './dialogs/save/save.component';
+import { UlContainerDirective } from './directives/ul-container.directive';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import {SaveComponent} from './dialogs/save/save.component';
     SearchPipe,
     YesNoComponent,
     AddProductComponent,
-    SaveComponent
+    SaveComponent,
+    UlContainerDirective,
+
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ import {SaveComponent} from './dialogs/save/save.component';
     MaterialModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   entryComponents: [YesNoComponent, AddProductComponent, SaveComponent],
   providers: [ProductsService, PassProductService],

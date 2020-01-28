@@ -13,7 +13,7 @@
         <input type="number" matInput formControlName="price"  [value]="price">
       </mat-form-field>
       <div class="actions">
-        <button mat-raised-button (click)="onSaveProduct(productForm.value)" [disabled]="productForm?.invalid||productForm.get('name').value === '' ">Save</button>
+        <button mat-raised-button (click)="onSaveProduct(productForm.value)" [disabled]="productForm.get('name').value === '' ">Save</button>
       </div>
     </div>
 

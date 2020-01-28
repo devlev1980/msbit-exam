@@ -23,10 +23,10 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="list-wrapper">
-      <ul *ngIf="products.length> 0;else noData">
-        <li class="products-list" *ngFor="let product of products  | search: searchText ;let i=index"
-            [ngClass]="{'selected': index === i}" (click)="onSelectProduct(product)">
+    <div class="list-wrapper" id="ulElement">
+      <ul *ngIf="products.length> 0;else noData" >
+        <li class="products-list"  *ngFor="let product of products  | search: searchText |paginate:{itemsPerPage:5,totalItems: products.length,currentPage: p} ;let i=index"
+            [ngClass]="{'selected': index === i}"  (click)="onSelectProduct(product)" >
           <div class="product-list-details">
             <div class="product-thumbnail">
               <img [src]="product.fedex?.thumbnailUrl" alt="" *ngIf="product.fedex?.thumbnailUrl">
@@ -67,11 +67,16 @@
         </li>
 
       </ul>
+
       <ng-template #noData>
         <h3 class="no-data">No data to display</h3>
       </ng-template>
     </div>
+    <div class="pagination">
+      <pagination-controls (pageChange)="p = $event" class="ngx-pagination"></pagination-controls>
+    </div>
   </div>
+
   <div class="col-right">
     <app-product-detail></app-product-detail>
   </div>

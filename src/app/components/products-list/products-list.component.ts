@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {ProductsService} from '../../services/products.service';
 import {Observable} from 'rxjs';
 import {IProduct, IProductList} from '../../models/product';
@@ -9,6 +9,7 @@ import {SharingService} from '../../services/sharing.service';
 import {AddProductComponent} from '../../dialogs/add-product/add-product.component';
 import {F} from '../../models/fedex';
 import {U} from '../../models/ups';
+import {UlContainerDirective} from '../../directives/ul-container.directive';
 
 
 @Component({
@@ -17,13 +18,19 @@ import {U} from '../../models/ups';
   styleUrls: ['./products-list.component.scss'],
   providers: [PassProductService]
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnInit, AfterViewInit {
   options: IOption[] = [];
   products: IProductList<F, U>[] = [];
   selectedProduct: IProductList<F, U>;
   searchText: string = '';
   private updatedProduct: IProduct;
   private index: number;
+  counter: number = 0;
+  start = 5 + this.counter;
+  @ViewChildren(UlContainerDirective) list_container: QueryList<UlContainerDirective>;
+  li: any;
+  liItemsArray = [];
+  p: number = 1;
 
   constructor(private productsService: ProductsService,
               private passProductService: PassProductService,
@@ -32,6 +39,8 @@ export class ProductsListComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     this.options = [
       {
         id: 0,
@@ -43,9 +52,12 @@ export class ProductsListComponent implements OnInit {
       }
     ];
     setTimeout(() => {
-
+      for (this.counter; this.counter < this.start; this.counter++) {
+      }
       this.productsService.getProducts().subscribe((data) => {
         this.products = data;
+        this.list_container.forEach(i => console.log(i));
+        console.log(this.list_container.length);
       });
     }, 1000);
 
@@ -55,6 +67,13 @@ export class ProductsListComponent implements OnInit {
 
     });
 
+  }
+
+  ngAfterViewInit(): void {
+
+    for (this.counter; this.counter < this.start; this.counter++) {
+
+    }
   }
 
 
@@ -76,7 +95,7 @@ export class ProductsListComponent implements OnInit {
     switch (option.id) {
       case 0:
         this.products.sort((a, b) => a.name.localeCompare(b.name));
-      break;
+        break;
       case 1:
         this.products.sort((a, b) => a.price - b.price);
     }
