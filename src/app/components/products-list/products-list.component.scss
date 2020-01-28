@@ -1,9 +1,5 @@
 @import "../../../assets/styles/colors";
 
-* {
-  //outline: 1px solid darkgreen;
-}
-
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -11,8 +7,6 @@
   padding: 0.5rem 1rem;
 
   .col-left {
-    //height: 735px;
-    //overflow-y: auto;
     position: relative;
     max-width: 700px;
     width: 100%;
@@ -47,7 +41,6 @@
       .search-wrapper{
         @media (max-width: 425px) {
           width: 100%;
-          //text-align: center;
         }
       }
 
@@ -62,14 +55,21 @@
     }
 .list-wrapper{
   height: 500px;
-  h3.no-data{
+  .no-data{
     color: white;
     font-size: 50px;
+    width: 100%;
+    display: block;
     text-align: center;
+
+    mat-spinner{
+      margin:2% auto;
+      stroke: #0B3948 !important;
+    }
   }
   ul {
 
-    max-height: 500px;
+    max-height: 571px;
     overflow-y: auto;
     li.products-list {
       display: flex;

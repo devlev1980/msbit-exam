@@ -50,4 +50,15 @@ button.mat-raised-button.delete-btn{
   padding: 15px 10px;
   color: #fff;
 }
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: $listBackground;
+}
+.mat-select-arrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent ;
+  border-right: 5px solid transparent ;
+  border-top: 5px solid #fff !important;
+  margin: 0 4px;
+}
 

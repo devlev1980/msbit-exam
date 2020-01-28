@@ -1,23 +1,34 @@
 <div class="container">
-  <form [formGroup]="productForm" >
+  <form [formGroup]="productForm">
     <div class="product-details">
       <h3>Product Details</h3>
-      <img [src]="thumbnail"  alt="" class="product-img">
+      <img [src]="thumbnail" alt="" class="product-img">
       <mat-form-field>
-        <input type="text" matInput formControlName="name"   [value]="name">
+        <input type="text" matInput formControlName="name">
       </mat-form-field>
       <mat-form-field>
-        <textarea matInput  formControlName="description"  [value]="description"></textarea>
+        <textarea matInput formControlName="description"></textarea>
       </mat-form-field>
       <mat-form-field>
-        <input type="number" matInput formControlName="price"  [value]="price">
+        <input type="number" matInput formControlName="price">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput formControlName="creation_date">
+      </mat-form-field>
+
+      <mat-form-field *ngIf="this.selectedProduct?.type === 3">
+        <input type="text" matInput formControlName="delivery_comp">
       </mat-form-field>
       <div class="actions">
-        <button mat-raised-button (click)="onSaveProduct(productForm.value)" [disabled]="productForm.get('name').value === '' ">Save</button>
+        <button mat-raised-button (click)="onSaveProduct(productForm.value)" [disabled]="productForm.invalid">Save
+        </button>
       </div>
     </div>
 
   </form>
+
+
 </div>
 
 

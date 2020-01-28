@@ -1,15 +1,13 @@
-import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ProductsService} from '../../services/products.service';
-import {Observable} from 'rxjs';
 import {IProduct, IProductList} from '../../models/product';
 import {PassProductService} from '../../services/pass-product.service';
-import {MatDialog, MatDialogRef} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {YesNoComponent} from '../../dialogs/yes-no/yes-no.component';
 import {SharingService} from '../../services/sharing.service';
 import {AddProductComponent} from '../../dialogs/add-product/add-product.component';
 import {F} from '../../models/fedex';
 import {U} from '../../models/ups';
-import {UlContainerDirective} from '../../directives/ul-container.directive';
 
 
 @Component({
@@ -18,7 +16,7 @@ import {UlContainerDirective} from '../../directives/ul-container.directive';
   styleUrls: ['./products-list.component.scss'],
   providers: [PassProductService]
 })
-export class ProductsListComponent implements OnInit, AfterViewInit {
+export class ProductsListComponent implements OnInit {
   options: IOption[] = [];
   products: IProductList<F, U>[] = [];
   selectedProduct: IProductList<F, U>;
@@ -27,9 +25,6 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
   private index: number;
   counter: number = 0;
   start = 5 + this.counter;
-  @ViewChildren(UlContainerDirective) list_container: QueryList<UlContainerDirective>;
-  li: any;
-  liItemsArray = [];
   p: number = 1;
 
   constructor(private productsService: ProductsService,
@@ -47,8 +42,8 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
         value: 'Name'
       },
       {
-        id: 0,
-        value: 'Recently Added'
+        id: 1,
+        value: 'Type'
       }
     ];
     setTimeout(() => {
@@ -56,35 +51,23 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
       }
       this.productsService.getProducts().subscribe((data) => {
         this.products = data;
-        this.list_container.forEach(i => console.log(i));
-        console.log(this.list_container.length);
       });
-    }, 1000);
+    }, 2000);
 
     this.shareService.getProduct().subscribe(updatedProduct => {
       this.updatedProduct = updatedProduct;
-
-
     });
 
   }
 
-  ngAfterViewInit(): void {
-
-    for (this.counter; this.counter < this.start; this.counter++) {
-
-    }
-  }
-
-
   onSelectProduct(product: IProductList<F, U>) {
+    this.selectedProduct = product;
     this.index = this.products.findIndex((x) => x === product);
     if (product.type === 2 && product.ups.length > 1) {
       return;
     } else {
       this.passProductService.sendProduct(product);
     }
-
   }
 
   onSelectUps(ups: any) {
@@ -94,10 +77,11 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
   onSortBy(option: IOption) {
     switch (option.id) {
       case 0:
-        this.products.sort((a, b) => a.name.localeCompare(b.name));
+        // this.products = this.products.sort((a, b) => a.name - b.name);
         break;
       case 1:
-        this.products.sort((a, b) => a.price - b.price);
+       this.products = this.products.sort((a, b) => a.type - b.type);
+        break;
     }
 
   }
@@ -121,8 +105,6 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
     addDialogref.afterClosed().subscribe((form: IProduct) => {
       if (form) {
         this.convertDateToTimeStamp(form);
-
-
       }
     });
   }
@@ -132,6 +114,10 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
   }
 
 
+  onChangePage(event: number) {
+    console.log(this.products.length);
+    this.p = event;
+  }
 }
 
 interface IOption {
