@@ -63,7 +63,7 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  initForm() {
+  initForm(): void {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -77,17 +77,19 @@ export class ProductDetailComponent implements OnInit {
 
 
   onSaveProduct(form) {
-    console.log(form);
-    this.dialog.open(SaveComponent, {
+    const saveDialogRef = this.dialog.open(SaveComponent, {
       width: '450px',
       data: {product: form}
+    });
+    saveDialogRef.afterClosed().subscribe(() => {
+      this.productForm.reset();
     });
 
 
   }
 
 
-   convertToDateString(timestamp: number) {
+  convertToDateString(timestamp: number) {
     this.date = new Date(timestamp);
     const year = this.date.getFullYear();
     const month = ('0' + (this.date.getMonth())).substr(-2);

@@ -8,8 +8,13 @@
 
   .col-left {
     position: relative;
-    max-width: 700px;
+    max-width: 900px;
     width: 100%;
+    margin-right: 3rem;
+
+    @media (max-width: 1100px) {
+      margin-right: 0;
+    }
 
     .header-wrapper {
       position: sticky;
@@ -54,7 +59,10 @@
       }
     }
 .list-wrapper{
-  height: 500px;
+  //height: 500px;
+  @media (max-width: 1200px) {
+    margin-bottom: 3rem;
+  }
   .no-data{
     color: white;
     font-size: 50px;

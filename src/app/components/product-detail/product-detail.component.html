@@ -4,21 +4,26 @@
       <h3>Product Details</h3>
       <img [src]="thumbnail" alt="" class="product-img">
       <mat-form-field>
-        <input type="text" matInput formControlName="name">
+        <label for="name">Name</label>
+        <input type="text" matInput formControlName="name" id="name">
       </mat-form-field>
       <mat-form-field>
-        <textarea matInput formControlName="description"></textarea>
+        <label for="desc">Description</label>
+        <textarea matInput formControlName="description" id="desc"></textarea>
       </mat-form-field>
       <mat-form-field>
-        <input type="number" matInput formControlName="price">
+        <label for="desc">Price</label>
+        <input type="number" matInput formControlName="price" id="price">
       </mat-form-field>
 
       <mat-form-field>
-        <input type="text" matInput formControlName="creation_date">
+        <label for="date">Creation Date</label>
+        <input type="text" matInput formControlName="creation_date" id="date">
       </mat-form-field>
 
       <mat-form-field *ngIf="this.selectedProduct?.type === 3">
-        <input type="text" matInput formControlName="delivery_comp">
+        <label for="company">Delivery Company</label>
+        <input type="text" matInput formControlName="delivery_comp" id="company">
       </mat-form-field>
       <div class="actions">
         <button mat-raised-button (click)="onSaveProduct(productForm.value)" [disabled]="productForm.invalid">Save
