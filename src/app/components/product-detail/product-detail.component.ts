@@ -36,27 +36,22 @@ export class ProductDetailComponent implements OnInit {
         case 1:
           this.fedex = this.selectedProduct.fedex;
           this.thumbnail = this.fedex.thumbnailUrl;
-          this.productForm.get('name').patchValue(this.fedex.name);
-          this.productForm.get('description').patchValue(this.fedex.description);
-          this.productForm.get('price').patchValue(this.fedex.price);
+          this.patchValue(this.selectedProduct.fedex)
           this.convertToDateString(this.fedex.creationDate);
           this.productForm.get('creation_date').patchValue(this.formattedDate);
           break;
         case 2:
-          // this.selectedProduct.ups.forEach((el) => {
-          //   this.name = el.name;
-          //   this.thumbnail = el.thumbnailUrl;
-          //   this.description = el.description;
-          //   this.price = el.price;
-          // });
+          this.selectedProduct.ups.forEach((el) => {
+            this.thumbnail = el.thumbnailUrl ;
+            this.patchValue(el);
+            this.convertToDateString(el.creationDate);
+            this.productForm.get('creation_date').patchValue(this.formattedDate);
+          });
           break;
         case 3:
           this.thumbnail = this.selectedProduct.thumbnailUrl;
-          this.productForm.get('name').patchValue(this.selectedProduct.name);
-          this.productForm.get('description').patchValue(this.selectedProduct.description);
-          this.productForm.get('price').patchValue(this.selectedProduct.price);
+          this.patchValue(this.selectedProduct);
           this.productForm.get('creation_date').patchValue(this.formattedDate);
-          this.productForm.get('delivery_comp').patchValue(this.selectedProduct.deliveryComp);
           break;
 
       }
@@ -73,6 +68,13 @@ export class ProductDetailComponent implements OnInit {
     });
 
 
+  }
+
+  patchValue(selectedProduct) {
+    this.productForm.get('name').patchValue(selectedProduct.name);
+    this.productForm.get('description').patchValue(selectedProduct.description);
+    this.productForm.get('price').patchValue(selectedProduct.price);
+    this.productForm.get('delivery_comp').patchValue(selectedProduct.deliveryComp);
   }
 
 

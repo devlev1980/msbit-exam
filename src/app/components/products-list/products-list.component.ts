@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductsService} from '../../services/products.service';
 import {IProduct, IProductList} from '../../models/product';
 import {PassProductService} from '../../services/pass-product.service';
@@ -34,8 +34,6 @@ export class ProductsListComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
     this.options = [
       {
         id: 0,
@@ -77,10 +75,11 @@ export class ProductsListComponent implements OnInit {
   onSortBy(option: IOption) {
     switch (option.id) {
       case 0:
-        // this.products = this.products.sort((a, b) => a.name - b.name);
+        // Here i got an error : localCompare is undefined :(
+        this.products = this.products.sort((a, b) => a.name.localeCompare(b.name));
         break;
       case 1:
-       this.products = this.products.sort((a, b) => a.type - b.type);
+        this.products = this.products.sort((a, b) => a.type - b.type);
         break;
     }
 
@@ -115,9 +114,10 @@ export class ProductsListComponent implements OnInit {
 
 
   onChangePage(event: number) {
-    console.log(this.products.length);
     this.p = event;
   }
+
+
 }
 
 interface IOption {

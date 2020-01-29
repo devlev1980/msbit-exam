@@ -38,7 +38,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+
   ],
   entryComponents: [YesNoComponent, AddProductComponent, SaveComponent],
   providers: [ProductsService, PassProductService],
