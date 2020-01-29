@@ -41,12 +41,12 @@ export class ProductDetailComponent implements OnInit {
           this.productForm.get('creation_date').patchValue(this.formattedDate);
           break;
         case 2:
-          this.selectedProduct.ups.forEach((el) => {
-            this.thumbnail = el.thumbnailUrl ;
-            this.patchValue(el);
-            this.convertToDateString(el.creationDate);
-            this.productForm.get('creation_date').patchValue(this.formattedDate);
-          });
+          // this.selectedProduct.ups.forEach((el) => {
+          //   this.thumbnail = el.ups.thumbnailUrl ;
+          //   this.patchValue(el);
+          //   this.convertToDateString(el.creationDate);
+          //   this.productForm.get('creation_date').patchValue(this.formattedDate);
+          // });
           break;
         case 3:
           this.thumbnail = this.selectedProduct.thumbnailUrl;

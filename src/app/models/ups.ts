@@ -9,6 +9,6 @@ export interface U {
       name: string;
       price: number;
       thumbnailUrl: string;
-    },
-  ];
+    }
+  ]
 }
