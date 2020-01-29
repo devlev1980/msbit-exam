@@ -10,5 +10,5 @@ export interface U {
       price: number;
       thumbnailUrl: string;
     }
-  ]
+  ];
 }
