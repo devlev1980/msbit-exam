@@ -36,7 +36,7 @@ export class ProductDetailComponent implements OnInit {
         case 1:
           this.fedex = this.selectedProduct.fedex;
           this.thumbnail = this.fedex.thumbnailUrl;
-          this.patchValue(this.selectedProduct.fedex)
+          this.patchValue(this.selectedProduct.fedex);
           this.convertToDateString(this.fedex.creationDate);
           this.productForm.get('creation_date').patchValue(this.formattedDate);
           break;
@@ -62,7 +62,7 @@ export class ProductDetailComponent implements OnInit {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      price: ['', [Validators.min(1)]],
+      price: ['', [Validators.min(1), Validators.required]],
       delivery_comp: [''],
       creation_date: [''],
     });
